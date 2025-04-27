@@ -1,1 +1,0 @@
-// In this page we will create a server using express and connect to the database using mongoose
