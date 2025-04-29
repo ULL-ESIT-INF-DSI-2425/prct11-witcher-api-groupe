@@ -1,13 +1,14 @@
 import { Race, Ubication, Material, Type } from "./enum.js";
+import { Document } from "mongoose";
 
 /**
  * Interface that represents a Person 
  */
-export interface Person {
+export interface Person extends Document {
   /**
    * Unique identifier for the person
    */
-  id: number;
+  personId: number;
   /**
    * Name of the person
    */

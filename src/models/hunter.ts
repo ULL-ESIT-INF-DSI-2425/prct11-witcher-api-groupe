@@ -5,7 +5,7 @@ import { Race, Ubication } from "../include/enum.js";
 
 // Basic schema for the Hunter model
 export const hunterSchema = new Schema<HunterI>({
-  id: { 
+  personId: { 
     type: Number, 
     required: true 
   },

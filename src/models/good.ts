@@ -3,8 +3,8 @@ import { GoodI } from "../include/interface.js";
 import { Material } from "../include/enum.js";
 
 // Basic schema for the Merchant model
-export const hunterSchema = new Schema<GoodI>({
-  id: { 
+const hunterSchema = new Schema<GoodI>({
+  personId: { 
     type: Number, 
     required: true 
   },
