@@ -67,3 +67,10 @@ export interface MerchantI extends Person {
    */
   location: Ubication;
 }
+
+/**
+ * Interface thata represents a Transaction
+ */
+export interface TransactionI extends Document {
+  name: string; 
+}
