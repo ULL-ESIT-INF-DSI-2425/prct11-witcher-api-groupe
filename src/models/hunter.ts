@@ -5,24 +5,24 @@ import { Race, Ubication } from "../include/enum.js";
 
 // Basic schema for the Hunter model
 export const hunterSchema = new Schema<HunterI>({
-  personId: { 
-    type: Number, 
-    required: true 
-  },
   name: { 
     type: String, 
-    required: true 
+    unique: true, 
+    required: true, 
+    trim: true 
   },
   race: {
     type: String,
     enum: Object.values(Race),
-    required: true
+    required: true, 
+    trim: true,
   },
   location: {
     type: String,
+    trim: true,
+    required: true,
     enum: Object.values(Ubication),
-    required: true
   }
 });
 
-export const HunterModel = model<HunterI>("Hunter", hunterSchema);
+export const HunterModel = model<HunterI>('Hunter', hunterSchema);

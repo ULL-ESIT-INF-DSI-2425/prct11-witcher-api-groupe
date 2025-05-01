@@ -4,10 +4,6 @@ import { Material } from "../include/enum.js";
 
 // Basic schema for the Merchant model
 const goodSchema = new Schema<GoodI>({
-  personId: { 
-    type: Number, 
-    required: true 
-  },
   name: { 
     type: String, 
     required: true 
@@ -31,4 +27,4 @@ const goodSchema = new Schema<GoodI>({
   },
 });
 
-export const GoodSchema = model<GoodI>("Good", goodSchema);
+export const GoodModel = model<GoodI>("Good", goodSchema);

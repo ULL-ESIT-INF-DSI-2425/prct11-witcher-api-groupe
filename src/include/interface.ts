@@ -6,10 +6,6 @@ import { Document } from "mongoose";
  */
 export interface Person extends Document {
   /**
-   * Unique identifier for the person
-   */
-  personId: number;
-  /**
    * Name of the person
    */
   name: string
