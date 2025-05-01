@@ -49,7 +49,7 @@ router.get('/:id', async (req, res) => {
 
 // Basic petition to modify merchant
 router.patch('/', async (req, res) => {
-  if (!req.query.title) {
+  if (!req.query.name) {
     res.status(400).send({
       error: 'A title must be provided in the query string',
     });
@@ -69,7 +69,42 @@ router.patch('/', async (req, res) => {
       });
     } else {
       try {
-        const merchant = await MerchantModel.findOneAndUpdate({title: req.query.title.toString()}, req.body, {
+        const merchant = await MerchantModel.findOneAndUpdate({name: req.query.name.toString()}, req.body, {
+            new: true,
+            runValidators: true,
+          })
+        
+        if (!merchant) {
+          res.status(404).send('Merchant not found');
+        } else {
+          res.status(200).send(merchant)
+        }
+      } catch(error) {
+        res.status(500).send(error);
+      }
+    }
+  }
+});
+
+// Basic petition to modify merchant by id
+router.patch('/:id', async (req, res) => {
+  if (!req.body) {
+    res.status(400).send({
+      error: 'Fields to be modified have to be provided in the request body',
+    });
+  } else {
+    const allowedUpdates = ['name', 'type', 'location'];
+    const actualUpdates = Object.keys(req.body);
+    const isValidUpdate =
+      actualUpdates.every((update) => allowedUpdates.includes(update));
+
+    if (!isValidUpdate) {
+      res.status(400).send({
+        error: 'Update is not permitted',
+      });
+    } else {
+      try {
+        const merchant = await MerchantModel.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true,
           })
@@ -88,13 +123,13 @@ router.patch('/', async (req, res) => {
 
 // Basic delete petition to delete a merchant with his name
 router.delete('/', async (req, res) => {
-  if (!req.query.title) {
+  if (!req.query.name) {
     res.status(400).send({
       error: 'A title must be provided',
     });
   } else {
     try {
-      const merchant = await MerchantModel.findOneAndDelete({title: req.query.title.toString()})
+      const merchant = await MerchantModel.findOneAndDelete({name: req.query.name.toString()})
       if (!merchant) {
         res.status(404).send('Merchant not found');
       } else {
