@@ -22,6 +22,11 @@ const hunterSchema = new Schema<HunterI>({
     trim: true,
     required: true,
     enum: Object.values(Ubication),
+  },
+  transaction: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: 'Transaction'
   }
 });
 

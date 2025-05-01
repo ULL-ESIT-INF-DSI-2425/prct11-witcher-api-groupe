@@ -24,6 +24,10 @@ export interface HunterI extends Person {
    * Location of the hunter
    */
   location: Ubication; 
+  /**
+   * Transaction
+   */
+  transaction: TransactionI; 
 }
 
 /**
@@ -69,11 +73,12 @@ export interface MerchantI extends Person {
  */
 export interface TransactionI extends Document {
   consumer: Types.ObjectId; 
+  consumerType: string; 
   goods: {
     good: Types.ObjectId;
-    quantiy: number; 
+    quantity: number; 
   }[]; 
-  date?: Date; 
+  date: Date; 
   purchaseType: TransactionType; 
   totalAmount: number; 
 }
