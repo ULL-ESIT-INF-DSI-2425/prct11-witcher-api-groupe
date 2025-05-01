@@ -1,5 +1,5 @@
-import { Race, Ubication, Material, Type } from "./enum.js";
-import { Document } from "mongoose";
+import { Race, Ubication, Material, Type, TransactionType } from "./enum.js";
+import { Document, Types } from "mongoose";
 
 /**
  * Interface that represents a Person 
@@ -68,5 +68,12 @@ export interface MerchantI extends Person {
  * Interface thata represents a Transaction
  */
 export interface TransactionI extends Document {
-  name: string; 
+  consumer: Types.ObjectId; 
+  goods: {
+    good: Types.ObjectId;
+    quantiy: number; 
+  }[]; 
+  date?: Date; 
+  purchaseType: TransactionType; 
+  totalAmount: number; 
 }

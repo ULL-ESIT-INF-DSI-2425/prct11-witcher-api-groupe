@@ -4,7 +4,7 @@ import { Type, Ubication } from "../include/enum.js";
 
 
 // Basic schema for the Merchant model
-export const merchantSchema = new Schema<MerchantI>({
+const merchantSchema = new Schema<MerchantI>({
   name: { 
     type: String, 
     required: true 

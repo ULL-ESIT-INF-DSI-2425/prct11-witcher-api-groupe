@@ -90,3 +90,8 @@ export enum Material {
   Ceniza = "Ceniza de la hoguera negra",
   Espejo = "Espejo de cristal oscuro"
 }
+
+export enum TransactionType {
+  Sale = "sale", 
+  Purchase = "purchase"
+}
