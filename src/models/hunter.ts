@@ -9,7 +9,15 @@ const hunterSchema = new Schema<HunterI>({
     type: String, 
     unique: true, 
     required: true, 
-    trim: true 
+    trim: true,
+    validate: {
+      validator: (value: string) => {
+        // Verifica que solo contenga letras y que cada palabra empiece con mayúscula
+        const regex = /^[A-Z][a-z]*(\s[A-Z][a-z]*)*$/;
+        return regex.test(value);
+      },
+      message: "El nombre solo debe contener letras y cada palabra debe empezar con mayúscula",
+    },
   },
   race: {
     type: String,

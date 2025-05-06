@@ -6,11 +6,23 @@ import { Material } from "../include/enum.js";
 const goodSchema = new Schema<GoodI>({
   name: { 
     type: String, 
-    required: true 
+    required: true,
+    validate: {
+      validator: (value: string) => {
+        // Verifica que sólo la primera letra sea mayúscula
+        const regex = /^[A-Z][a-z]*$/;
+        return regex.test(value);
+      },
+      message: "El nombre debe comenzar con una letra mayúscula y solo contener letras",
+    },
   },
   description: {
     type: String,
-    required: true
+    required: true,
+    validate: {
+      validator: (value: string) => value.length <= 50,
+      message: "La descripción no debe tener más de 50 caracteres",
+    },
   },
   material: {
     type: String,
@@ -19,11 +31,13 @@ const goodSchema = new Schema<GoodI>({
   },
   weight: {
     type: Number,
-    required: true
+    required: true,
+    min: 0,
   },
   crownValue: {
     type: Number,
-    required: true
+    required: true,
+    min: 0,
   },
 });
 
