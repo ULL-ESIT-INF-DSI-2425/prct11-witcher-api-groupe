@@ -5,7 +5,7 @@ import { TransactionType } from "../include/enum.js";
 const transactionSchema = new Schema<TransactionI>({
   consumer: {
     type: Schema.Types.ObjectId,
-    ref: 'Hunter', 
+    refPath: 'consumerType', 
     required: true
   },
   consumerType: {
