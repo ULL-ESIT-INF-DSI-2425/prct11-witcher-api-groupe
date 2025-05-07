@@ -4,9 +4,9 @@ import { app } from "../src/index.js";
 import { HunterModel } from "../src/models/hunter.js";
 
 const firstHunter = {
-  name: "Geralt Of Rivia", // Actualizado para cumplir con el validador
-  race: "Brujo", // Valor válido según el enum Race
-  location: "Kaer Morhen", // Valor válido según el enum Ubication
+  name: "Geralt Of Rivia",
+  race: "Brujo",
+  location: "Kaer Morhen",
 };
 
 beforeEach(async () => {
@@ -19,9 +19,9 @@ describe("POST /hunter", () => {
     await request(app)
       .post("/hunter")
       .send({
-        name: "Yennefer Of Vengerberg", // Actualizado para cumplir con el validador
-        race: "Hechicero", // Valor válido según el enum Race
-        location: "Novigrado", // Valor válido según el enum Ubication
+        name: "Yennefer Of Vengerberg",
+        race: "Hechicero",
+        location: "Novigrado",
       })
       .expect(201);
   });
@@ -61,7 +61,7 @@ describe("PATCH /hunter", () => {
   test("Should successfully update a hunter by name", async () => {
     await request(app)
       .patch("/hunter?name=Geralt Of Rivia")
-      .send({ location: "Novigrado" }) // Valor válido según el enum Ubication
+      .send({ location: "Novigrado" })
       .expect(200);
   });
 

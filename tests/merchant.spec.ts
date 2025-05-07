@@ -5,8 +5,8 @@ import { MerchantModel } from "../src/models/merchant.js";
 
 const firstMerchant = {
   name: "Vesemir",
-  type: "Herrero", // Valor válido según el enum Type
-  location: "Kaer Morhen", // Valor válido según el enum Ubication
+  type: "Herrero",
+  location: "Kaer Morhen",
 };
 
 beforeEach(async () => {
@@ -20,8 +20,8 @@ describe("POST /merchant", () => {
       .post("/merchant")
       .send({
         name: "Lambert",
-        type: "Alquimista", // Valor válido según el enum Type
-        location: "Novigrado", // Valor válido según el enum Ubication
+        type: "Alquimista",
+        location: "Novigrado",
       })
       .expect(201);
   });
@@ -66,7 +66,7 @@ describe("PATCH /merchant", () => {
   test("Should successfully update a merchant by name", async () => {
     await request(app)
       .patch("/merchant?name=Vesemir")
-      .send({ location: "Novigrado" }) // Valor válido según el enum Ubication
+      .send({ location: "Novigrado" })
       .expect(200);
   });
 

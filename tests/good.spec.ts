@@ -1,15 +1,16 @@
+
 import { describe, test, expect, beforeEach } from "vitest";
 import request from "supertest";
 import { app } from "../src/index.js";
 import { GoodModel } from "../src/models/good.js";
 
 const firstGood = {
-  name: "Sword", // Cumple con el validador
-  description: "A sharp blade", // Menos de 50 caracteres
-  material: "Acero de Mahakam", // Valor válido según el enum Material
-  weight: 3, // Número positivo
-  crownValue: 100, // Número positivo
-  stock: 10, // Número positivo
+  name: "Sword",
+  description: "A sharp blade",
+  material: "Acero de Mahakam",
+  weight: 3,
+  crownValue: 100,
+  stock: 10,
 };
 
 beforeEach(async () => {
@@ -22,12 +23,12 @@ describe("POST /good", () => {
     await request(app)
       .post("/good")
       .send({
-        name: "Shield", // Cumple con el validador
-        description: "A sturdy shield", // Menos de 50 caracteres
-        material: "Madera de roble de las colinas grises", // Valor válido según el enum Material
-        weight: 5, // Número positivo
-        crownValue: 150, // Número positivo
-        stock: 5, // Número positivo
+        name: "Shield",
+        description: "A sturdy shield",
+        material: "Madera de roble de las colinas grises",
+        weight: 5,
+        crownValue: 150,
+        stock: 5,
       })
       .expect(201);
   });
