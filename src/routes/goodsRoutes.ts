@@ -48,44 +48,39 @@ router.get('/:id', async (req, res) => {
 // Basic petition to modify good
 router.patch('/', async (req, res) => {
   if (!req.query.name) {
-    return res.status(400).send({
-      error: 'A name must be provided in the query string',
+    res.status(400).send({
+      error: 'A title must be provided in the query string',
     });
-  }
-
-  if (!req.body || Object.keys(req.body).length === 0) {
-    return res.status(400).send({
+  } else if (!req.body) {
+    res.status(400).send({
       error: 'Fields to be modified have to be provided in the request body',
     });
-  }
+  } else {
+    const allowedUpdates = ['name', 'description', 'material', 'weight', 'crownValue', 'stock'];
+    const actualUpdates = Object.keys(req.body);
+    const isValidUpdate =
+      actualUpdates.every((update) => allowedUpdates.includes(update));
 
-  const allowedUpdates = ['name', 'description', 'material', 'weight', 'crownValue', 'stock'];
-  const actualUpdates = Object.keys(req.body);
-  const isValidUpdate = actualUpdates.every((update) => allowedUpdates.includes(update));
-
-  if (!isValidUpdate) {
-    return res.status(400).send({
-      error: 'Update is not permitted',
-    });
-  }
-
-  try {
-    const good = await GoodModel.findOneAndUpdate(
-      { name: req.query.name.toString() },
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
-
-    if (!good) {
-      res.status(404).send('Good not found');
+    if (!isValidUpdate) {
+      res.status(400).send({
+        error: 'Update is not permitted',
+      });
     } else {
-      res.status(200).send(good);
+      try {
+        const good = await GoodModel.findOneAndUpdate({name: req.query.name.toString()}, req.body, {
+            new: true,
+            runValidators: true,
+          })
+        
+        if (!good) {
+          res.status(404).send('Good not found');
+        } else {
+          res.status(200).send(good)
+        }
+      } catch(error) {
+        res.status(500).send(error);
+      }
     }
-  } catch (error) {
-    res.status(500).send(error);
   }
 });
 
