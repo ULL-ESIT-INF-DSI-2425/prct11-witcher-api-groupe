@@ -39,6 +39,12 @@ const goodSchema = new Schema<GoodI>({
     required: true,
     min: 0,
   },
+  stock: {
+    type: Number,
+    required: true,
+    min: 0,
+    default: 1, 
+  },
 });
 
 export const GoodModel = model<GoodI>("Good", goodSchema);

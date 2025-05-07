@@ -47,6 +47,10 @@ export interface GoodI extends Person {
    * Value of the good
    */
   crownValue: number;
+  /**
+   *  quantity of the good
+   */
+  stock: number;
 }
 
 /**
