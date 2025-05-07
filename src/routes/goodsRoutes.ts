@@ -80,12 +80,12 @@ router.patch('/', async (req, res) => {
     );
 
     if (!good) {
-      return res.status(404).send('Good not found');
+      res.status(404).send('Good not found');
+    } else {
+      res.status(200).send(good);
     }
-
-    res.status(200).send(good);
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(500).send(error);
   }
 });
 

@@ -146,11 +146,12 @@ router.delete('/:id', async (req, res) => {
   try {
     const merchant = await MerchantModel.findByIdAndDelete(req.params.id);
     if (!merchant) {
-      return res.status(404).send('Merchant not found');
+      res.status(404).send('Merchant not found');
+    } else {
+      res.status(200).send(merchant);
     }
-    res.status(200).send(merchant);
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(500).send(error);
   }
 });
 
