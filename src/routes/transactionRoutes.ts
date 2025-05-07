@@ -130,7 +130,7 @@ router.get('/:id', async (req, res) => {
     }
     res.status(200).send(transaction);
   } catch (err) {
-    res.status(500).send({ error: 'Failed to fetch transaction id' });
+    res.status(500).send(err);
   }
 });
 
@@ -155,7 +155,7 @@ router.get('/consumer/:name', async (req, res) => {
       res.status(200).send(transactions);
       }
   } catch (err) {
-    res.status(500).send({ error: 'Failed to fetch transactions consumer' });
+    res.status(500).send(err);
   } 
 });
 
@@ -218,7 +218,7 @@ router.delete('/:id', async (req, res) => {
       res.status(200).send(transaction);
     }
   } catch (err) {
-    res.status(500).send({ error: 'Failed to delete transaction' });
+    res.status(500).send(err);
   }
 });
 
