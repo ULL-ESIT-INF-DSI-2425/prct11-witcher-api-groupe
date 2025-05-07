@@ -72,13 +72,31 @@ export interface MerchantI extends Person {
  * Interface thata represents a Transaction
  */
 export interface TransactionI extends Document {
+  /**
+   * Represents the consumer of the transaction
+   */
   consumer: Types.ObjectId; 
+  /**
+   * Represents the user of the transaction
+   */
   consumerType: string; 
+  /**
+   * Represents the merchant of the transaction
+   */
   goods: {
     good: Types.ObjectId;
     quantity: number; 
   }[]; 
+  /**
+   * Represents the merchant of the transaction
+   */
   date: Date; 
+  /**
+   * Represents the merchant of the transaction
+   */
   purchaseType: TransactionType; 
+  /**
+   * Represents the merchant of the transaction
+   */
   totalAmount: number; 
 }

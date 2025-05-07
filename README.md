@@ -11,7 +11,7 @@
 - **Nombre:** Diego Hernández Toledo
 - **Correo electrónico:** alu0101550183@ull.edu.es
 
-[![CI Tests](https://github.com/ULL-ESIT-INF-DSI-2425/prct07-witcher-datamodel-groupe/actions/workflows/ci.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2425/prct07-witcher-datamodel-groupe/actions/workflows/ci.yml)
+[![CI Tests](https://github.com/ULL-ESIT-INF-DSI-2425/prct11-witcher-api-groupe/actions/workflows/ci.yaml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2425/prct11-witcher-api-groupe/actions/workflows/ci.yaml)
 
 [![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2425/prct11-witcher-api-groupe/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2425/prct11-witcher-api-groupe?branch=main)
 

@@ -2,8 +2,10 @@ import { model, Schema } from "mongoose";
 import { HunterI } from "../include/interface.js";
 import { Race, Ubication } from "../include/enum.js";
 
-
-// Basic schema for the Hunter model
+/**
+ * Schema for the Hunter model.
+ * This schema defines the structure of the Hunter documents in the MongoDB database.
+ */
 const hunterSchema = new Schema<HunterI>({
   name: { 
     type: String, 
@@ -12,7 +14,6 @@ const hunterSchema = new Schema<HunterI>({
     trim: true,
     validate: {
       validator: (value: string) => {
-        // Verifica que solo contenga letras y que cada palabra empiece con mayúscula
         const regex = /^[A-Z][a-z]*(\s[A-Z][a-z]*)*$/;
         return regex.test(value);
       },

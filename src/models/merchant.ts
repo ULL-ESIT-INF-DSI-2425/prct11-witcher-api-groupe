@@ -3,7 +3,10 @@ import { MerchantI } from "../include/interface.js";
 import { Type, Ubication } from "../include/enum.js";
 
 
-// Basic schema for the Merchant model
+/**
+ * Schema for the Merchant model
+ * This schema defines the structure of the Merchant documents in the MongoDB database.
+ */
 const merchantSchema = new Schema<MerchantI>({
   name: { 
     type: String, 

@@ -2,7 +2,10 @@ import { model, Schema } from "mongoose";
 import { GoodI } from "../include/interface.js";
 import { Material } from "../include/enum.js";
 
-// Basic schema for the Merchant model
+/**
+ * Schema for the good model.
+ * This schema defines the structure of the Goods documents in the MongoDB database.
+ */
 const goodSchema = new Schema<GoodI>({
   name: { 
     type: String, 

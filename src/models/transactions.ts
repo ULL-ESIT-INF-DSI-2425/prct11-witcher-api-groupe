@@ -2,6 +2,10 @@ import { model, Schema } from "mongoose";
 import { TransactionI } from "../include/interface.js";
 import { TransactionType } from "../include/enum.js";
 
+/**
+ * Schema for the Transaction model
+ * This schema defines the structure of the Transaction documents in the MongoDB database.
+ */
 const transactionSchema = new Schema<TransactionI>({
   consumer: {
     type: Schema.Types.ObjectId,

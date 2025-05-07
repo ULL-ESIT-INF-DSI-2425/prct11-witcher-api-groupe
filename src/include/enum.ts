@@ -91,6 +91,9 @@ export enum Material {
   Espejo = "Espejo de cristal oscuro"
 }
 
+/**
+ * Enum for transactions
+ */
 export enum TransactionType {
   Sale = "sale", 
   Purchase = "purchase"
