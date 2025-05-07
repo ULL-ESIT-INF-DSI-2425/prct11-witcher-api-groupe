@@ -8,6 +8,7 @@ const merchantSchema = new Schema<MerchantI>({
   name: { 
     type: String, 
     required: true,
+    unique: true,
     validate: {
       validator: (value: string) => {
         // Verifica que sólo la primera letra sea mayúscula

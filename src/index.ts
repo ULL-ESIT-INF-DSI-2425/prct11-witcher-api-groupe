@@ -5,7 +5,7 @@ import merchantRoutes from './routes/merchantRoutes.js'
 import goodRoutes from './routes/goodsRoutes.js'
 import transactionRoutes from './routes/transactionRoutes.js'
 
-const app = express();
+export const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());

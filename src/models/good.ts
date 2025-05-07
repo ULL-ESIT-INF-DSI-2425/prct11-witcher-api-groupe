@@ -7,6 +7,7 @@ const goodSchema = new Schema<GoodI>({
   name: { 
     type: String, 
     required: true,
+    unique: true,
     validate: {
       validator: (value: string) => {
         // Verifica que sólo la primera letra sea mayúscula
