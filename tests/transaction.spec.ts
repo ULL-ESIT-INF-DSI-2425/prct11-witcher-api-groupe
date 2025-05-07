@@ -46,20 +46,6 @@ beforeEach(async () => {
   firstTransaction.goods[0].good = goodId;
 });
 
-// describe("POST /transaction", () => {
-//   test("Should successfully create a new transaction", async () => {
-//     const response = await request(app)
-//       .post("/transaction")
-//       .send(firstTransaction)
-//       .expect(201);
-
-//     expect(response.body).toHaveProperty("_id");
-//     expect(response.body.consumerName).toBe("Eskel");
-//     expect(response.body.goods[0].good).toBe(goodId);
-//     expect(response.body.totalAmount).toBe(200); // 2 * crownValue (100)
-//   });
-// });
-
 describe("GET /transaction", () => {
   test("Should get all transactions", async () => {
     await new TransactionModel({
