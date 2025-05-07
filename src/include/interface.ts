@@ -24,10 +24,6 @@ export interface HunterI extends Person {
    * Location of the hunter
    */
   location: Ubication; 
-  /**
-   * Transaction
-   */
-  transaction: TransactionI; 
 }
 
 /**

@@ -31,11 +31,6 @@ const hunterSchema = new Schema<HunterI>({
     required: true,
     enum: Object.values(Ubication),
   },
-  transaction: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    ref: 'Transaction'
-  }
 });
 
 export const HunterModel = model<HunterI>('Hunter', hunterSchema);
