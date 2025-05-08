@@ -146,6 +146,72 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// Get transactions by consumer name
+router.get('/consumer/:name', async (req, res) => {
+  const { name } = req.params;
+
+  try {
+    const consumer = await HunterModel.findOne({ name }) || await MerchantModel.findOne({ name });
+
+    if (!consumer) {
+      res.status(404).send({ error: 'Consumer not found' });
+    } else {
+      const consumerId = consumer._id;
+      const transactions = await TransactionModel.find({ consumer: consumerId }).populate('goods.good');
+
+      if (transactions.length === 0) {
+        res.status(404).send({ error: 'No transactions found for this consumer' });
+        return;
+      }
+
+      res.status(200).send(transactions);
+      }
+  } catch (err) {
+    res.status(500).send({ error: 'Failed to fetch transactions' });
+  }
+});
+
+// Update transaction by ID
+router.patch('/:id', async (req, res) => {
+  try {
+    const transaction = await TransactionModel.findById(req.params.id);
+    if (!transaction) {
+      res.status(404).send({ error: 'Transaction not found' });
+    } else {
+      // Revert stock changes from the original transaction
+      await updateStock(
+        transaction.goods.map(item => ({ good: item.good.toString(), quantity: item.quantity })),
+        transaction.purchaseType === 'sale'
+      );
+
+      // Update transaction fields
+      transaction.goods = req.body.goods || transaction.goods;
+      transaction.date = req.body.date || transaction.date;
+      transaction.totalAmount = await calculateTotalAmount(
+        transaction.goods.map(item => ({ good: item.good.toString(), quantity: item.quantity }))
+      );
+
+      // Apply new stock changes
+      await updateStock(
+        transaction.goods.map(item => ({ good: item.good.toString(), quantity: item.quantity })),
+        transaction.purchaseType === 'purchase'
+      );
+      await transaction.save();
+
+      res.status(200).send(transaction);
+    }
+  } catch (err) {
+    const error = err as Error;
+    if (error.message.includes('Good with ID')) {
+      res.status(400).send({ error: error.message });
+    } else if (error.message.includes('Insufficient stock')) {
+      res.status(409).send({ error: error.message });
+    } else {
+      res.status(500).send({ error: 'Failed to update transaction' });
+    }
+  }
+});
+
 /**
  * @param reqBody - Objeto con los datos del bien a crear.
  * @returns El bien creado o un error en caso de fallo.
